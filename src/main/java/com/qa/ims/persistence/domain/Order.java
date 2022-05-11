@@ -1,12 +1,13 @@
 package com.qa.ims.persistence.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Order {
 
 	private Long id;
 	private Long customerId;
-	//listofitemids
-
-
+	private List<Long> items = new ArrayList<>();
 
 	public Order(Long customerId) {
 		this.customerId = customerId;
@@ -15,6 +16,12 @@ public class Order {
 	public Order(Long id, Long customerId) {
 		this.id = id;
 		this.customerId = customerId;
+	}
+	
+	public Order(Long id, Long customerId, List<Long> items) {
+		this.id = id;
+		this.customerId = customerId;
+		this.items = items;
 	}
 
 	public Long getId() {
@@ -32,10 +39,22 @@ public class Order {
 	public void setCustomerId(Long customerId) {
 		this.customerId = customerId;
 	}
+	
+	public List<Long> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Long> items) {
+		this.items = items;
+	}
+	
+	public void addItems(Long item) {
+		this.items.add(item);
+	}
 
 	@Override
 	public String toString() {
-		return "id:" + id + "customer id:" + customerId;
+		return "id:" + id + " customer id:" + customerId + " list of items:"+ this.items;
 	}
 
 //	@Override
@@ -69,5 +88,7 @@ public class Order {
 			return false;
 		return true;
 	}
+
+
 
 }
