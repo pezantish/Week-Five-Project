@@ -1,8 +1,9 @@
 drop schema if exists `ims`;
 CREATE SCHEMA IF NOT EXISTS `ims`;
 
-USE `ims`;
+USE `ims` ;
 
+DROP TABLE IF EXISTS orders;
 
 CREATE TABLE IF NOT EXISTS `ims`.`customers` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -10,7 +11,6 @@ CREATE TABLE IF NOT EXISTS `ims`.`customers` (
     `surname` VARCHAR(40) DEFAULT NULL,
     PRIMARY KEY (`id`)
 );
-
 
 CREATE TABLE IF NOT EXISTS `ims`.`items` (
     `id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -31,3 +31,4 @@ CREATE TABLE IF NOT EXISTS `ims`.`order_items` (
     PRIMARY KEY (`order_id`, `item_id`)
 );
 
+select * from orders
