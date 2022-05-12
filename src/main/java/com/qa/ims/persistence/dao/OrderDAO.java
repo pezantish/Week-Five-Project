@@ -22,7 +22,7 @@ public class OrderDAO implements Dao<Order> {
 	public Order modelFromResultSet(ResultSet resultSet) throws SQLException {
 		Long id = resultSet.getLong("id");
 		Long customerId = resultSet.getLong("customer_id");
-		//List<Long> items = resultSet.get
+		Long item = resultSet.getLong("item_id");
 		return new Order(id, customerId);
 	}
 
@@ -70,28 +70,33 @@ public class OrderDAO implements Dao<Order> {
 	 */
 	@Override
 	public Order create(Order order) {
+		boolean flag = true;
 		try (Connection connection = DBUtils.getInstance().getConnection();
 				PreparedStatement statement = connection
-						.prepareStatement("INSERT INTO orders(customer_id) VALUES (?)");) {
+						.prepareStatement("INSERT INTO orders(customer_id) VALUE (?)");) {
 			statement.setLong(1, order.getCustomerId());
 			statement.executeUpdate();
-			return readLatest();
 		} catch (Exception e) {
+			flag = false;
 			LOGGER.debug(e);
 			LOGGER.error(e.getMessage());
 		}
 		for(Long i: order.getItems()) {	
+			LOGGER.info("Order created" + i);
 			try (Connection connection = DBUtils.getInstance().getConnection();
 					PreparedStatement statement = connection
 							.prepareStatement("INSERT INTO order_items(order_id, item_id) VALUES (?, ?)");) {
 				statement.setLong(1, order.getId());
 				statement.setLong(2, i);
 				statement.executeUpdate();
-				return readLatest();
 			} catch (Exception e) {
+				flag = false;
 				LOGGER.debug(e);
 				LOGGER.error(e.getMessage());
 			}
+		}
+		if (flag) {
+		return readLatest();
 		}
 		return null;
 	}

@@ -12,6 +12,11 @@ public class Order {
 	public Order(Long customerId) {
 		this.customerId = customerId;
 	}
+	
+	public Order(Long customerId, List<Long> items) {
+		this.customerId = customerId;
+		this.items = items;
+	}
 
 	public Order(Long id, Long customerId) {
 		this.id = id;
@@ -57,15 +62,15 @@ public class Order {
 		return "id:" + id + " customer id:" + customerId + " list of items:"+ this.items;
 	}
 
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
 //		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
 //		result = prime * result + ((id == null) ? 0 : id.hashCode());
 //		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-//		return result;
-//	}
+		return result;
+	}
 
 	@Override
 	public boolean equals(Object obj) {

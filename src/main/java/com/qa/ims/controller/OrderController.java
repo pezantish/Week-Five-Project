@@ -1,5 +1,6 @@
 package com.qa.ims.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -45,15 +46,20 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order create() {
-		Long itemId;
+		Long itemId = 0L;
+		List<Long> ids = new ArrayList<>();
+		LOGGER.info("Please enter  id for the order");
+		Long id = utils.getLong();
 		LOGGER.info("Please enter customer id for the order");
 		Long customerId = utils.getLong();
-		Order order = orderDAO.create(new Order(customerId));
 		LOGGER.info("Please enter item id for the order, or \"-1\" to finish");
-		do {
+		while (itemId != -1){
 			itemId = utils.getLong();
-			order.addItems(itemId);
-		} while (itemId == -1);
+			ids.add(itemId);
+		};
+		LOGGER.info(ids);
+		ids.remove(Long.valueOf(-1L));
+		Order order = orderDAO.create(new Order(id, customerId, ids));
 		LOGGER.info("Order created");
 		return order;
 	}
@@ -63,17 +69,17 @@ public class OrderController implements CrudController<Order> {
 	 */
 	@Override
 	public Order update() {
-		Long itemId;
+		Long itemId = 0L;
 		LOGGER.info("Please enter the id of the order you would like to update");
 		Long id = utils.getLong();
 		LOGGER.info("Please enter a customer id");
 		Long customerId = utils.getLong();
 		Order order = orderDAO.update(new Order(id, customerId));
 		LOGGER.info("Please enter item id for the order, or \"-1\" to finish");
-		do {
+		while (itemId != -1) {
 			itemId = utils.getLong();
 			order.addItems(itemId);
-		} while (itemId == -1);
+		};
 		LOGGER.info("Customer Updated");
 		return order;
 	}
