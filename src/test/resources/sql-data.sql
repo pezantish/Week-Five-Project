@@ -1,2 +1,2 @@
-INSERT INTO `customers` (`first_name`, `surname`) VALUES ('jordan', 'harrison');
-INSERT INTO `items` (`name`, `price`) VALUES ('cheese', 2.0);
+INSERT INTO `ims`.`customers` (`first_name`, `surname`) VALUES ('jordan', 'harrison');
+INSERT INTO `ims`.`items` (`name`, `price`) VALUES ('cheese', 2.0);

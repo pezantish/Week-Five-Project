@@ -79,10 +79,13 @@ public class Item {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (price == null) {
+		if (this.price == null) 
 			if (other.price != null)
 				return false;
-		} else if (price != other.price) {
+		if (other.price == null) {
+			if (this.price != null)
+				return false;
+		} else if (!this.price.equals(other.price)) {
 			return false;
 		}
 		return true;
