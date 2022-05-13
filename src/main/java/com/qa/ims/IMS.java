@@ -23,7 +23,6 @@ public class IMS {
 
 	private final CustomerController customers;
 	private final ItemController items;
-	private final Utils utils; 
 	private final OrderController orders;
 	private final Utils utils;
 
@@ -34,7 +33,7 @@ public class IMS {
 		this.customers = new CustomerController(custDAO, utils);
 		this.items = new ItemController(itemDAO, utils);
 		final OrderDAO orderDAO = new OrderDAO();
-		this.orders = new OrderController(orderDAO, utils);
+		this.orders = new OrderController(orderDAO, itemDAO, utils);
 
 	}
 
@@ -61,7 +60,7 @@ public class IMS {
 			CrudController<?> active = null;
 			switch (domain) {
 			case CUSTOMER:
-				active = this.orders;
+				active = this.customers;
 				break;
 			case ITEM:
 				active = this.items;

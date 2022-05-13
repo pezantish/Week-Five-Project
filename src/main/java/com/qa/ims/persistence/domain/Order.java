@@ -7,13 +7,13 @@ public class Order {
 
 	private Long id;
 	private Long customerId;
-	private List<Long> items = new ArrayList<>();
+	private List<Item> items = new ArrayList<>();
 
 	public Order(Long customerId) {
 		this.customerId = customerId;
 	}
 	
-	public Order(Long customerId, List<Long> items) {
+	public Order(Long customerId, List<Item> items) {
 		this.customerId = customerId;
 		this.items = items;
 	}
@@ -23,7 +23,7 @@ public class Order {
 		this.customerId = customerId;
 	}
 	
-	public Order(Long id, Long customerId, List<Long> items) {
+	public Order(Long id, Long customerId, List<Item> items) {
 		this.id = id;
 		this.customerId = customerId;
 		this.items = items;
@@ -45,30 +45,36 @@ public class Order {
 		this.customerId = customerId;
 	}
 	
-	public List<Long> getItems() {
+	public List<Item> getItems() {
 		return items;
 	}
 
-	public void setItems(List<Long> items) {
+	public void setItems(List<Item> items) {
 		this.items = items;
 	}
 	
-	public void addItems(Long item) {
+	public void addItems(Item item) {
 		this.items.add(item);
 	}
 
 	@Override
 	public String toString() {
-		return "id:" + id + " customer id:" + customerId + " list of items:"+ this.items;
+		List<Long> itemids = new ArrayList<>();
+		Double orderprice = 0.0;
+		for (Item i:this.items) {
+			itemids.add(i.getId());
+			orderprice += i.getPrice();
+		}
+		return "id:" + id + " customer id:" + customerId + " list of items:"+ itemids + " price: " + orderprice;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-//		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-//		result = prime * result + ((id == null) ? 0 : id.hashCode());
-//		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((customerId == null) ? 0 : customerId.hashCode());
+		result = prime * result + ((items == null) ? 0 : items.hashCode());
 		return result;
 	}
 
@@ -85,6 +91,11 @@ public class Order {
 			if (other.getCustomerId() != null)
 				return false;
 		} else if (!getCustomerId().equals(other.getCustomerId()))
+			return false;
+		if (getItems() == null) {
+			if (other.getItems() != null)
+				return false;
+		} else if (!getItems().equals(other.getItems()))
 			return false;
 		if (id == null) {
 			if (other.id != null)
