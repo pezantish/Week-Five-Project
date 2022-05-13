@@ -1,68 +1,30 @@
-Coverage: 34%
-# Project Title
+Coverage: 62%
+https://pezantish.atlassian.net/jira/software/projects/IMS/boards/2
+# IMS
 
-One Paragraph of project description goes here
+This is an IMS project; it handles inventory management. Customers, items and orders are all stored within a databse, and allow crud actions to be achieved upon them.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
 ```
-Give examples
+Maven
+Java JDK
+MySQL
 ```
 
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
 ```
-Give the example
+Download the jar file. 
+Using java -jar (file name), run the program.
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system. Break down into which tests and what they do
+Tests are run by running the java class.
 
-### Unit Tests 
-
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### Integration Tests 
-Explain what these tests test, why and how to run them
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
@@ -75,6 +37,7 @@ We use [SemVer](http://semver.org/) for versioning.
 ## Authors
 
 * **Chris Perrins** - *Initial work* - [christophperrins](https://github.com/christophperrins)
+* **Elias Sadek** - *Subsequent work* - [pezantish](https://github.com/pezantish)
 
 ## License
 
@@ -84,6 +47,4 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
+* Thanks to the original coder, to my tutor, Pawel and to my cohort for helping me along.
